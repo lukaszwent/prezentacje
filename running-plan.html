@@ -406,6 +406,11 @@
           <span style="color: var(--success)">Długie Wybieganie</span>
         </li>
       </ul>
+      <div class="highlight-box" style="margin-top: 15px; font-size: 0.8rem">
+        <strong>Cel Tygodniowy:</strong> Łączny czas marszobiegów powinien
+        wynosić od <strong>2.5h do 3h</strong> tygodniowo (sumując Wt, Czw,
+        Ndz).
+      </div>
       <p class="note">
         *Przebieżki i Fartlek wprowadź dopiero, gdy będziesz biegać 30 min
         ciągiem (ok. 10-12 etapu marszobiegów).
@@ -624,6 +629,9 @@
         <button class="tab-btn" onclick="openTab(event, 'tabExamples')">
           Przykłady Progresji
         </button>
+        <button class="tab-btn" onclick="openTab(event, 'tabBase')">
+          Budowanie Bazy
+        </button>
       </div>
 
       <!-- TAB 1: ZASADY SIŁOWNI -->
@@ -680,6 +688,25 @@
             45' ➔ 50' ➔ 55' ➔ 40' (Lżejszy) ➔ 60' ➔ 65' ➔ ... aż do 90-100 min.
           </p>
         </div>
+
+        <h3>🏃 Prędkość i Tętno</h3>
+        <div class="warn-box">
+          <p style="margin: 0; font-weight: 600">
+            Nie patrz na tempo startowe!
+          </p>
+          <p style="margin-top: 5px; font-size: 0.85rem">
+            Twoim celem jest utrzymanie ciągłości wysiłku. Jeśli przy 8 km/h
+            tętno skacze do 170, zwolnij do <strong>6.5 - 7.5 km/h</strong>. To
+            ma być trucht konwersacyjny (możesz rozmawiać).
+          </p>
+        </div>
+
+        <h3>📉 Marsz to Twój przyjaciel</h3>
+        <p style="font-size: 0.9rem">
+          Odcinki marszu są po to, aby zbić tętno. Jeśli po 2 minutach marszu
+          serce nadal wali (powyżej 130-140), maszeruj dłużej. Nie zaczynaj
+          biegu na wysokim tętnie.
+        </p>
       </div>
 
       <!-- TAB 3: PRZYKŁADY -->
@@ -713,6 +740,32 @@
           </li>
         </ul>
       </div>
+
+      <div id="tabBase" class="tab-content">
+        <h3>🫀 Jak szybciej zbudować "Strefę 2"?</h3>
+        <p style="font-size: 0.9rem">
+          Jeśli podczas truchtu tętno od razu skacze do 150+, brakuje Ci bazy
+          tlenowej. Możesz przyspieszyć jej budowę, dodając w dni nietreningowe
+          aktywności o niskiej intensywności (Strefa 2: 115-135 bpm):
+        </p>
+        <ul style="font-size: 0.9rem">
+          <li>
+            <strong>Chodzenie pod górkę:</strong> Bieżnia ustawiona na wznos
+            3-5%, prędkość 5-6 km/h.
+          </li>
+          <li>
+            <strong>Rower stacjonarny:</strong> Spokojna jazda przez 45-60 min.
+          </li>
+          <li>
+            <strong>Aktywność codzienna:</strong> Pilnuj 10,000 kroków dziennie
+            (szybki marsz).
+          </li>
+        </ul>
+        <div class="highlight-box">
+          To właśnie te aktywności "nauczą" Twoje serce pompować krew wydajniej
+          przy niższym tętnie, co potem przełoży się na bieganie.
+        </div>
+      </div>
     </div>
 
     <script>
@@ -740,39 +793,42 @@
       }
       // Dane do tabeli progresji marszobiegów
       const progressionData = [
-        { step: 1, scheme: "2 min bieg / 1 min chód (x10)", time: "30 min" },
-        { step: 2, scheme: "2.5 min bieg / 1 min chód (x9)", time: "31.5 min" },
-        { step: 3, scheme: "3 min bieg / 1.5 min chód (x7)", time: "31.5 min" },
-        { step: 4, scheme: "3 min bieg / 1.5 min chód (x8)", time: "36 min" },
-        { step: 5, scheme: "3.5 min bieg / 1.5 min chód (x7)", time: "35 min" },
-        { step: 6, scheme: "3.5 min bieg / 1.5 min chód (x8)", time: "40 min" },
-        { step: 7, scheme: "4 min bieg / 2 min chód (x6)", time: "36 min" },
-        { step: 8, scheme: "4 min bieg / 2 min chód (x7)", time: "42 min" },
-        { step: 9, scheme: "5 min bieg / 2 min chód (x5)", time: "35 min" },
-        { step: 10, scheme: "5 min bieg / 2 min chód (x6)", time: "42 min" },
+        // Faza 1: Adaptacja tętna (1 min biegu)
+        { step: 1, scheme: "1 min bieg / 2 min chód (x10)", time: "30 min" },
+        { step: 2, scheme: "1 min bieg / 2 min chód (x12)", time: "36 min" },
+        { step: 3, scheme: "1.5 min bieg / 2 min chód (x10)", time: "35 min" },
+        { step: 4, scheme: "1.5 min bieg / 2 min chód (x12)", time: "42 min" },
+        { step: 5, scheme: "2 min bieg / 2 min chód (x8)", time: "32 min" },
+        { step: 6, scheme: "2 min bieg / 2 min chód (x10)", time: "40 min" },
 
-        // Strona 2
-        { step: 11, scheme: "6 min bieg / 2 min chód (x4)", time: "32 min" },
-        { step: 12, scheme: "6 min bieg / 2 min chód (x5)", time: "40 min" },
-        { step: 13, scheme: "7 min bieg / 2 min chód (x4)", time: "36 min" },
-        { step: 14, scheme: "8 min bieg / 2 min chód (x3)", time: "30 min" },
-        { step: 15, scheme: "8 min bieg / 2 min chód (x4)", time: "40 min" },
-        { step: 16, scheme: "10 min bieg / 2 min chód (x3)", time: "36 min" },
-        { step: 17, scheme: "12 min bieg / 2 min chód (x2)", time: "28 min" },
-        { step: 18, scheme: "12 min bieg / 2 min chód (x3)", time: "42 min" },
-        { step: 19, scheme: "15 min bieg / 2 min chód (x2)", time: "34 min" },
+        // Faza 2: Wydłużanie biegu
+        { step: 7, scheme: "2.5 min bieg / 2 min chód (x8)", time: "36 min" },
+        { step: 8, scheme: "3 min bieg / 2 min chód (x7)", time: "35 min" },
+        { step: 9, scheme: "3 min bieg / 2 min chód (x9)", time: "45 min" },
+        { step: 10, scheme: "3.5 min bieg / 2 min chód (x8)", time: "44 min" },
+
+        // Strona 2: Faza 3 (Większy bieg, dłuższy chód dla odpoczynku)
+        { step: 11, scheme: "4 min bieg / 2.5 min chód (x6)", time: "39 min" },
+        { step: 12, scheme: "4 min bieg / 2.5 min chód (x7)", time: "45 min" },
+        { step: 13, scheme: "5 min bieg / 3 min chód (x5)", time: "40 min" },
+        { step: 14, scheme: "5 min bieg / 3 min chód (x6)", time: "48 min" },
+        { step: 15, scheme: "6 min bieg / 3 min chód (x5)", time: "45 min" },
+        { step: 16, scheme: "8 min bieg / 3 min chód (x4)", time: "44 min" },
+        { step: 17, scheme: "10 min bieg / 3 min chód (x3)", time: "39 min" },
+        { step: 18, scheme: "12 min bieg / 3 min chód (x3)", time: "45 min" },
+        { step: 19, scheme: "15 min bieg / 3 min chód (x2)", time: "36 min" },
         {
           step: 20,
-          scheme: "20 min bieg / 2 min chód + 10 min bieg",
-          time: "32 min",
+          scheme: "20 min bieg / 3 min chód + 10 min bieg",
+          time: "33 min",
         },
 
-        // Strona 3 (Końcówka)
-        { step: 21, scheme: "20 min bieg / 2 min chód (x2)", time: "44 min" },
+        // Strona 3: Końcówka
+        { step: 21, scheme: "20 min bieg / 3 min chód (x2)", time: "46 min" },
         {
           step: 22,
-          scheme: "25 min bieg / 2 min marsz / 10 min bieg",
-          time: "37 min",
+          scheme: "25 min bieg / 3 min marsz / 10 min bieg",
+          time: "38 min",
         },
         { step: 23, scheme: "30 min bieg ciągły", time: "30 min" },
         { step: 24, scheme: "35 min bieg ciągły", time: "35 min" },
