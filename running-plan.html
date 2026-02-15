@@ -7,12 +7,19 @@
     <style>
       :root {
         --primary: #2563eb;
+        --primary-light: #eff6ff;
         --bg: #f8fafc;
         --card-bg: #ffffff;
         --text: #1e293b;
         --accent: #ef4444;
         --success: #10b981;
+        --success-light: #ecfdf5;
         --warning: #f59e0b;
+        --border: #e2e8f0;
+      }
+
+      * {
+        box-sizing: border-box;
       }
 
       body {
@@ -24,39 +31,53 @@
         margin: 0;
         padding: 15px;
         line-height: 1.6;
-      }
-
-      h1,
-      h2,
-      h3 {
-        color: var(--primary);
-        margin-top: 0;
+        -webkit-font-smoothing: antialiased;
       }
 
       h1 {
+        color: var(--primary);
         text-align: center;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
+        margin: 10px 0 5px 0;
+      }
+
+      h2 {
+        margin-top: 0;
+        color: var(--primary);
+        font-size: 1.25rem;
+      }
+
+      h3 {
+        font-size: 1.1rem;
         margin-bottom: 10px;
+        color: #334155;
+        border-bottom: 2px solid var(--primary-light);
+        padding-bottom: 5px;
+        display: inline-block;
+      }
+
+      p {
+        margin-bottom: 15px;
       }
 
       .card {
         background: var(--card-bg);
         border-radius: 12px;
-        padding: 20px;
+        padding: 16px;
         margin-bottom: 20px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        border: 1px solid var(--border);
       }
 
       .tag {
         display: inline-block;
         padding: 4px 10px;
         border-radius: 9999px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 700;
         text-transform: uppercase;
         color: white;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
         letter-spacing: 0.05em;
       }
 
@@ -83,101 +104,223 @@
         margin-bottom: 8px;
       }
 
-      details {
-        margin-top: 15px;
-        border-top: 1px solid #e2e8f0;
-        padding-top: 15px;
+      /* --- TABS (Poprawione na mobile) --- */
+      .tabs-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Płynne przewijanie na iOS */
+        margin-bottom: 15px;
+        border-bottom: 1px solid var(--border);
+        white-space: nowrap; /* Zapobiega łamaniu linii */
+        padding-bottom: 5px;
       }
 
-      summary {
+      /* Ukrycie paska przewijania, ale zachowanie funkcjonalności */
+      .tabs-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .tab-btn {
+        background: none;
+        border: none;
+        padding: 10px 15px;
+        font-size: 0.9rem;
         font-weight: 600;
+        color: #64748b;
         cursor: pointer;
+        display: inline-block;
+        border-radius: 6px;
+        transition: all 0.2s;
+        margin-right: 5px;
+      }
+
+      .tab-btn.active {
         color: var(--primary);
-        list-style: none; /* Ukrywa domyślny trójkąt */
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        background-color: var(--primary-light);
       }
 
-      summary::after {
-        content: "+";
-        font-size: 1.2rem;
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.3s;
       }
 
-      details[open] summary::after {
-        content: "-";
+      .tab-content.active {
+        display: block;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* --- TABLES (Responsywne) --- */
+      .table-responsive {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
       }
 
       table {
         width: 100%;
+        min-width: 300px; /* Minimalna szerokość, żeby się nie zgniotło */
         border-collapse: collapse;
-        font-size: 0.9rem;
-        margin-top: 15px;
+        font-size: 0.85rem;
+        margin-top: 10px;
       }
 
       th,
       td {
-        border-bottom: 1px solid #e2e8f0;
-        padding: 10px;
+        border-bottom: 1px solid var(--border);
+        padding: 10px 8px;
         text-align: left;
       }
 
       th {
         background-color: #f1f5f9;
         font-weight: 600;
+        color: #475569;
       }
-
       tr:last-child td {
         border-bottom: none;
       }
 
+      /* --- PAGINATION --- */
       .pagination-controls {
         display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: 15px;
-        padding-top: 10px;
-        border-top: 1px solid #e2e8f0;
+        padding-top: 15px;
+        border-top: 1px solid var(--border);
       }
 
       .btn {
         background-color: var(--primary);
         color: white;
         border: none;
-        padding: 8px 16px;
-        border-radius: 6px;
+        padding: 10px 18px; /* Większe pole dotyku */
+        border-radius: 8px;
         cursor: pointer;
         font-size: 0.9rem;
-        transition: opacity 0.2s;
+        font-weight: 500;
+        touch-action: manipulation;
       }
 
       .btn:disabled {
         background-color: #cbd5e1;
         cursor: not-allowed;
+        opacity: 0.7;
       }
 
-      .btn:active {
-        opacity: 0.8;
+      /* --- DETAILS / SUMMARY --- */
+      details {
+        margin-top: 10px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0;
+        overflow: hidden;
       }
 
+      summary {
+        font-weight: 600;
+        cursor: pointer;
+        color: var(--primary);
+        padding: 12px 15px;
+        background-color: #fff;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      summary::after {
+        content: "+";
+        font-size: 1.2rem;
+        color: #94a3b8;
+        font-weight: 300;
+      }
+      details[open] summary::after {
+        content: "-";
+      }
+
+      details[open] summary {
+        border-bottom: 1px solid var(--border);
+        background-color: #f8fafc;
+      }
+
+      details > div,
+      details > ol {
+        padding: 15px;
+        margin: 0;
+        background-color: #fff;
+      }
+
+      /* --- OTHER UTILS --- */
       .note {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         color: #64748b;
         font-style: italic;
-        margin-top: 8px;
         display: block;
+        margin-top: 5px;
       }
 
-      .video-container iframe {
-        width: 100%;
-        aspect-ratio: 16 / 9;
+      .highlight-box {
+        background-color: var(--primary-light);
+        padding: 15px;
         border-radius: 8px;
-        border: none;
+        margin-top: 10px;
+        border-left: 4px solid var(--primary);
+        font-size: 0.9rem;
       }
 
-      /* Ukrywanie wierszy tabeli dla paginacji */
-      .hidden-row {
-        display: none;
+      .gym-details {
+        display: block;
+        font-size: 0.85em;
+        color: #64748b;
+        margin-top: 2px;
+      }
+
+      /* Ulepszenie listy siłowni */
+      .gym-list {
+        list-style-type: none; /* Usuwamy domyślne numery */
+        padding-left: 0;
+        counter-reset: gym-counter;
+      }
+
+      .gym-list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #f1f5f9;
+        padding-bottom: 8px;
+      }
+
+      .gym-list li:last-child {
+        border-bottom: none;
+      }
+
+      .gym-list li::before {
+        counter-increment: gym-counter;
+        content: counter(gym-counter) ".";
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+        color: var(--primary);
+      }
+
+      .gym-list strong {
+        color: #334155;
+        display: inline-block;
       }
     </style>
   </head>
@@ -467,7 +610,134 @@
       </div>
     </div>
 
+    <!-- TABY: WIEDZA I ZASADY -->
+    <div class="card">
+      <span class="tag info">Kompendium Wiedzy</span>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'tabGymRules')">
+          Zasady Siłowni
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'tabRunRules')">
+          Zasady Biegania
+        </button>
+        <button class="tab-btn" onclick="openTab(event, 'tabExamples')">
+          Przykłady Progresji
+        </button>
+      </div>
+
+      <!-- TAB 1: ZASADY SIŁOWNI -->
+      <div id="tabGymRules" class="tab-content active">
+        <h3>📈 Progresja Ciężaru</h3>
+        <p>
+          Zwiększaj ciężar co trening (np. +2.5kg). Gdy seria główna robi się za
+          ciężka (technika siada) przez 3 treningi z rzędu: zresetuj ciężar do
+          90% ostatniego wyniku i buduj od nowa.
+        </p>
+
+        <h3>⏱️ Przerwy między seriami</h3>
+        <ul>
+          <li><strong>Rozgrzewkowe:</strong> 1-2 min</li>
+          <li>
+            <strong>Przed serią GŁÓWNĄ:</strong> 2.5 - 3 min (pełen wypoczynek)
+          </li>
+          <li><strong>Przed Back Off Set (BOS):</strong> 2 min</li>
+          <li><strong>Akcesoria (biceps, triceps etc.):</strong> 1.5 min</li>
+        </ul>
+
+        <h3>📉 Back Off Set (BOS)</h3>
+        <p>
+          Po najcięższej serii głównej, zdejmij ok. 10-15% ciężaru i wykonaj
+          kolejną serię (zazwyczaj wyjdzie 1-2 powtórzenia więcej lub tyle samo
+          z większym luzem).
+        </p>
+      </div>
+
+      <!-- TAB 2: ZASADY BIEGANIA -->
+      <div id="tabRunRules" class="tab-content">
+        <h3>🏃 Czasy Treningów</h3>
+        <ul>
+          <li>
+            <strong>Marszobiegi:</strong> Zgodnie z tabelą poniżej (30-60 min).
+          </li>
+          <li>
+            <strong>Bieg Spokojny + Przebieżki:</strong> 45-60 min (Wtorek).
+          </li>
+          <li>
+            <strong>Fartlek:</strong> Rozgrzewka + Część główna (16 min) +
+            Schłodzenie = łącznie ok. 45-50 min (Czwartek).
+          </li>
+        </ul>
+
+        <h3>🌲 Długie Wybieganie (Niedziela)</h3>
+        <div class="highlight-box">
+          <p>
+            <strong>Cel:</strong> Budowa bazy tlenowej. Tempo: Bardzo wolne
+            (konwersacyjne).
+          </p>
+          <p>
+            <strong>Progresja Czasu (Tydzień po tygodniu):</strong><br />
+            45' ➔ 50' ➔ 55' ➔ 40' (Lżejszy) ➔ 60' ➔ 65' ➔ ... aż do 90-100 min.
+          </p>
+        </div>
+      </div>
+
+      <!-- TAB 3: PRZYKŁADY -->
+      <div id="tabExamples" class="tab-content">
+        <h3>Przykładowa seria - Martwy Ciąg</h3>
+        <div style="background: #f8fafc; padding: 10px; border-radius: 8px">
+          <p><strong>Rozgrzewka:</strong></p>
+          <ul>
+            <li>Pusty gryf x 12</li>
+            <li>50 kg x 5 (1 min przerwy)</li>
+            <li>60 kg x 5 (1.5 min przerwy)</li>
+            <li>70 kg x 3 (2 min przerwy)</li>
+          </ul>
+          <p>
+            <strong>SERIA GŁÓWNA:</strong> 80 kg x 5 (RIR 1-2) <br /><em
+              >(3 min przerwy)</em
+            >
+          </p>
+          <p><strong>BACK OFF SET:</strong> 70 kg x 6-8 (RIR 1-2)</p>
+        </div>
+
+        <h3>Cykl Progresji (Przykład)</h3>
+        <ul>
+          <li>Trening 1: 80kg x 5</li>
+          <li>Trening 2: 82.5kg x 5</li>
+          <li>Trening 3: 85kg x 5</li>
+          <li>...</li>
+          <li>
+            Trening 9: 100kg x 3 (Ciężko!) - <strong>STOP</strong>. Cofasz się
+            na 90kg i zaczynasz znowu budować na 5 powtórzeń.
+          </li>
+        </ul>
+      </div>
+    </div>
+
     <script>
+      // --- SKRYPT TABY ---
+      function openTab(evt, tabName) {
+        var i, tabContent, tabBtn;
+
+        // Ukryj wszystkie
+        tabContent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabContent.length; i++) {
+          tabContent[i].style.display = "none";
+          tabContent[i].classList.remove("active");
+        }
+
+        // Usuń klasę active z przycisków
+        tabBtn = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tabBtn.length; i++) {
+          tabBtn[i].className = tabBtn[i].className.replace(" active", "");
+        }
+
+        // Pokaż wybrany
+        document.getElementById(tabName).style.display = "block";
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.className += " active";
+      }
       // Dane do tabeli progresji marszobiegów
       const progressionData = [
         { step: 1, scheme: "2 min bieg / 1 min chód (x10)", time: "30 min" },
