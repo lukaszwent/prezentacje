@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plan Półmaraton & FBW Pro</title>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --bg: #f8fafc;
+        --card-bg: #ffffff;
+        --text: #1e293b;
+        --accent: #ef4444;
+        --success: #10b981;
+        --warning: #f59e0b;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        margin: 0;
+        padding: 15px;
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3 {
+        color: var(--primary);
+        margin-top: 0;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+      }
+
+      .card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        margin-bottom: 15px;
+        letter-spacing: 0.05em;
+      }
+
+      .tag.run {
+        background-color: var(--success);
+      }
+      .tag.gym {
+        background-color: var(--primary);
+      }
+      .tag.info {
+        background-color: #64748b;
+      }
+      .tag.warn {
+        background-color: var(--warning);
+      }
+
+      ul,
+      ol {
+        padding-left: 20px;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      details {
+        margin-top: 15px;
+        border-top: 1px solid #e2e8f0;
+        padding-top: 15px;
+      }
+
+      summary {
+        font-weight: 600;
+        cursor: pointer;
+        color: var(--primary);
+        list-style: none; /* Ukrywa domyślny trójkąt */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      summary::after {
+        content: "+";
+        font-size: 1.2rem;
+      }
+
+      details[open] summary::after {
+        content: "-";
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+        margin-top: 15px;
+      }
+
+      th,
+      td {
+        border-bottom: 1px solid #e2e8f0;
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f1f5f9;
+        font-weight: 600;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      .pagination-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #e2e8f0;
+      }
+
+      .btn {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: opacity 0.2s;
+      }
+
+      .btn:disabled {
+        background-color: #cbd5e1;
+        cursor: not-allowed;
+      }
+
+      .btn:active {
+        opacity: 0.8;
+      }
+
+      .note {
+        font-size: 0.85rem;
+        color: #64748b;
+        font-style: italic;
+        margin-top: 8px;
+        display: block;
+      }
+
+      .video-container iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px;
+        border: none;
+      }
+
+      /* Ukrywanie wierszy tabeli dla paginacji */
+      .hidden-row {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🚀 Plan: Zero do Półmaratonu</h1>
+    <p
+      style="
+        text-align: center;
+        font-size: 0.9rem;
+        color: #64748b;
+        margin-bottom: 25px;
+      "
+    >
+      Start: 15 Lutego | Meta: 15 Września
+    </p>
+
+    <!-- Tygodniowy Rozkład -->
+    <div class="card">
+      <span class="tag info">Rozkład Tygodnia</span>
+      <ul style="list-style: none; padding: 0">
+        <li style="border-bottom: 1px solid #f1f5f9; padding: 8px 0">
+          <strong>Pon:</strong>
+          <span style="color: var(--primary)">Siłownia (FBW A)</span>
+        </li>
+        <li style="border-bottom: 1px solid #f1f5f9; padding: 8px 0">
+          <strong>Wt:</strong>
+          <span style="color: var(--success)"
+            >Bieg (Spokojny / Marszobieg) + Przebieżki*</span
+          >
+        </li>
+        <li style="border-bottom: 1px solid #f1f5f9; padding: 8px 0">
+          <strong>Śr:</strong> Wolne / Spacer / Joga
+        </li>
+        <li style="border-bottom: 1px solid #f1f5f9; padding: 8px 0">
+          <strong>Czw:</strong>
+          <span style="color: var(--success)">Bieg (Fartlek)*</span>
+        </li>
+        <li style="border-bottom: 1px solid #f1f5f9; padding: 8px 0">
+          <strong>Pt:</strong>
+          <span style="color: var(--primary)">Siłownia (FBW B)</span>
+        </li>
+        <li style="border-bottom: 1px solid #f1f5f9; padding: 8px 0">
+          <strong>Sob:</strong> Wolne (Regeneracja)
+        </li>
+        <li style="border-bottom: 1px solid #f1f5f9; padding: 8px 0">
+          <strong>Ndz:</strong>
+          <span style="color: var(--success)">Długie Wybieganie</span>
+        </li>
+      </ul>
+      <p class="note">
+        *Przebieżki i Fartlek wprowadź dopiero, gdy będziesz biegać 30 min
+        ciągiem (ok. 10-12 etapu marszobiegów).
+      </p>
+    </div>
+
+    <!-- Progresja Marszobiegów -->
+    <div class="card">
+      <span class="tag run">Fundament</span>
+      <h2>📉 Progresja: Marsz → Bieg Ciągły</h2>
+      <p>
+        Wykonuj te treningi we
+        <strong>Wtorek, Czwartek i Niedzielę</strong> (chyba że robisz już
+        Fartlek/Long Run). Przechodź do kolejnego etapu, gdy poprzedni wykonasz
+        z "zapasem".
+      </p>
+
+      <table id="progressionTable">
+        <thead>
+          <tr>
+            <th style="width: 15%">Etap</th>
+            <th>Schemat (Bieg / Marsz)</th>
+            <th style="width: 25%">Czas Łączny</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Wiersze generowane przez JS -->
+        </tbody>
+      </table>
+
+      <div class="pagination-controls">
+        <button id="prevBtn" class="btn" disabled>Poprzednie</button>
+        <span id="pageIndicator" style="font-size: 0.9rem; color: #64748b"
+          >Strona 1 z 3</span
+        >
+        <button id="nextBtn" class="btn">Następne</button>
+      </div>
+    </div>
+
+    <!-- Fartlek i Przebieżki -->
+    <div class="card">
+      <span class="tag warn">Akcenty</span>
+      <h2>⚡ Jak progresować w Akcentach?</h2>
+      <p>
+        Gdy już biegasz ciągiem (ok. 30-40 min), wprowadź te zmiany. Nie
+        wszystko naraz!
+      </p>
+
+      <details>
+        <summary>Wtorek: Przebieżki (Technika)</summary>
+        <div style="padding-top: 10px">
+          <p>
+            Robione na koniec spokojnego biegu. To nie sprint na 100%, to ładny,
+            dynamiczny bieg (ok. 85-90%).
+          </p>
+          <ul>
+            <li>
+              <strong>Poziom 1:</strong> 4 x 20s (szybko) / 60s (marsz/truch)
+            </li>
+            <li><strong>Poziom 2:</strong> 6 x 20s / 60s</li>
+            <li><strong>Poziom 3:</strong> 8 x 20s / 60s</li>
+            <li><strong>Poziom 4:</strong> 10 x 20s / 60s</li>
+            <li><strong>Poziom 5:</strong> 8 x <strong>30s</strong> / 60s</li>
+          </ul>
+          <p class="note">
+            Zwiększaj poziom co 3-4 tygodnie, jeśli technika jest idealna.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Czwartek: Fartlek (Silnik)</summary>
+        <div style="padding-top: 10px">
+          <p>
+            Zabawa prędkością. Rozgrzewka 10-15 min, potem część główna, potem
+            schłodzenie.
+          </p>
+          <p><strong>Baza:</strong> 8 powtórzeń (1 min SZYBKO / 1 min WOLNO)</p>
+          <p><strong>Metody Progresji (zmieniaj co cykl 4-tyg):</strong></p>
+          <ol>
+            <li>
+              <strong>Gęstość (skracaj przerwę):</strong><br />8x (1 min szybko
+              / <strong>45s</strong> wolno)
+            </li>
+            <li>
+              <strong>Objętość (dłuższy odcinek):</strong><br />6x (<strong
+                >1.5 min</strong
+              >
+              szybko / 1.5 min wolno) → potem 5x (2 min / 2 min)
+            </li>
+            <li>
+              <strong>Intensywność (szybciej):</strong><br />Te same 8x 1/1, ale
+              szybki odcinek biegniesz o 0.2-0.5 km/h szybciej niż miesiąc temu.
+            </li>
+          </ol>
+        </div>
+      </details>
+    </div>
+
+    <!-- Siłownia (Pełna rozpiska) -->
+    <div class="card">
+      <span class="tag gym">Siłownia</span>
+      <h2>🏋️♂️ Trening FBW</h2>
+
+      <details>
+        <summary>Plan A (Poniedziałek)</summary>
+        <ol class="gym-list" style="margin-top: 15px">
+          <li>
+            <strong>Martwy ciąg rumuński (RDL)</strong>
+            <span class="gym-details"
+              >2-3 serie rozgrzewkowe + 1 GŁÓWNA + 1 BOS</span
+            >
+          </li>
+          <li>
+            <strong>Wyciskanie OHP (Żołnierskie)</strong>
+            <span class="gym-details"
+              >2-3 serie rozgrzewkowe + 1 GŁÓWNA + 1 BOS</span
+            >
+          </li>
+          <li>
+            <strong>Wyciąg górny / Podciąganie</strong>
+            <span class="gym-details">1 seria rozgrzewkowa + 3 GŁÓWNE</span>
+          </li>
+          <li>
+            <strong>Uginanie nóg leżąc (Dwójki)</strong>
+            <span class="gym-details">1 seria rozgrzewkowa + 2 GŁÓWNE</span>
+          </li>
+          <li>
+            <strong>Triceps (np. Linki)</strong>
+            <span class="gym-details">1-2 serie x RIR1</span>
+          </li>
+          <li>
+            <strong>Biceps (np. Hantle z supinacją)</strong>
+            <span class="gym-details">1-2 serie x RIR1</span>
+          </li>
+          <li>
+            <strong>Łydki (Wspięcia)</strong>
+            <span class="gym-details">1-2 serie x RIR1</span>
+          </li>
+          <li>
+            <strong>Brzuch (np. Allahy)</strong>
+            <span class="gym-details">1-2 serie x RIR1</span>
+          </li>
+        </ol>
+      </details>
+
+      <details>
+        <summary>Plan B (Piątek)</summary>
+        <ol class="gym-list" style="margin-top: 15px">
+          <li>
+            <strong>Przysiady ze sztangą</strong>
+            <span class="gym-details"
+              >2-3 serie rozgrzewkowe + 1 GŁÓWNA + 1 BOS</span
+            >
+          </li>
+          <li>
+            <strong>Wyciskanie na ławce płaskiej</strong>
+            <span class="gym-details"
+              >2-3 serie rozgrzewkowe + 1 GŁÓWNA + 1 BOS</span
+            >
+          </li>
+          <li>
+            <strong>Wiosłowanie sztangą/hantlami</strong>
+            <span class="gym-details">1 seria rozgrzewkowa + 3 GŁÓWNE</span>
+          </li>
+          <li>
+            <strong>Wyprosty nóg / Maszyna pośladkowa</strong>
+            <span class="gym-details">1 seria rozgrzewkowa + 2 GŁÓWNE</span>
+          </li>
+          <li>
+            <strong>Triceps (np. Wyciskanie francuskie)</strong>
+            <span class="gym-details">1-2 serie x RIR1</span>
+          </li>
+          <li>
+            <strong>Biceps (np. Gryf łamany)</strong>
+            <span class="gym-details">1-2 serie x RIR1</span>
+          </li>
+          <li>
+            <strong>Łydki (Wspięcia siedząc)</strong>
+            <span class="gym-details">1-2 serie x RIR1</span>
+          </li>
+          <li>
+            <strong>Brzuch (np. Wznosy nóg)</strong>
+            <span class="gym-details">1-2 serie x RIR1</span>
+          </li>
+        </ol>
+      </details>
+
+      <div
+        style="
+          margin-top: 15px;
+          background: #f1f5f9;
+          padding: 10px;
+          border-radius: 8px;
+          font-size: 0.85rem;
+        "
+      >
+        <strong>Przerwy:</strong><br />
+        • 1-2 min w seriach rozgrzewkowych<br />
+        • 2.5-3 min przed serią główną<br />
+        • 2 min przed Back Off Set (BOS)
+      </div>
+    </div>
+
+    <script>
+      // Dane do tabeli progresji marszobiegów
+      const progressionData = [
+        { step: 1, scheme: "2 min bieg / 1 min chód (x10)", time: "30 min" },
+        { step: 2, scheme: "2.5 min bieg / 1 min chód (x9)", time: "31.5 min" },
+        { step: 3, scheme: "3 min bieg / 1.5 min chód (x7)", time: "31.5 min" },
+        { step: 4, scheme: "3 min bieg / 1.5 min chód (x8)", time: "36 min" },
+        { step: 5, scheme: "3.5 min bieg / 1.5 min chód (x7)", time: "35 min" },
+        { step: 6, scheme: "3.5 min bieg / 1.5 min chód (x8)", time: "40 min" },
+        { step: 7, scheme: "4 min bieg / 2 min chód (x6)", time: "36 min" },
+        { step: 8, scheme: "4 min bieg / 2 min chód (x7)", time: "42 min" },
+        { step: 9, scheme: "5 min bieg / 2 min chód (x5)", time: "35 min" },
+        { step: 10, scheme: "5 min bieg / 2 min chód (x6)", time: "42 min" },
+
+        // Strona 2
+        { step: 11, scheme: "6 min bieg / 2 min chód (x4)", time: "32 min" },
+        { step: 12, scheme: "6 min bieg / 2 min chód (x5)", time: "40 min" },
+        { step: 13, scheme: "7 min bieg / 2 min chód (x4)", time: "36 min" },
+        { step: 14, scheme: "8 min bieg / 2 min chód (x3)", time: "30 min" },
+        { step: 15, scheme: "8 min bieg / 2 min chód (x4)", time: "40 min" },
+        { step: 16, scheme: "10 min bieg / 2 min chód (x3)", time: "36 min" },
+        { step: 17, scheme: "12 min bieg / 2 min chód (x2)", time: "28 min" },
+        { step: 18, scheme: "12 min bieg / 2 min chód (x3)", time: "42 min" },
+        { step: 19, scheme: "15 min bieg / 2 min chód (x2)", time: "34 min" },
+        {
+          step: 20,
+          scheme: "20 min bieg / 2 min chód + 10 min bieg",
+          time: "32 min",
+        },
+
+        // Strona 3 (Końcówka)
+        { step: 21, scheme: "20 min bieg / 2 min chód (x2)", time: "44 min" },
+        {
+          step: 22,
+          scheme: "25 min bieg / 2 min marsz / 10 min bieg",
+          time: "37 min",
+        },
+        { step: 23, scheme: "30 min bieg ciągły", time: "30 min" },
+        { step: 24, scheme: "35 min bieg ciągły", time: "35 min" },
+        { step: 25, scheme: "40 min bieg ciągły", time: "40 min" },
+        { step: 26, scheme: "45 min bieg ciągły", time: "45 min" },
+        { step: 27, scheme: "50 min bieg ciągły", time: "50 min" },
+        { step: 28, scheme: "55 min bieg ciągły", time: "55 min" },
+        { step: 29, scheme: "60 min bieg ciągły", time: "60 min" },
+        { step: 30, scheme: "META: Bieg ciągły 1h+", time: "60+ min" },
+      ];
+
+      const itemsPerPage = 10;
+      let currentPage = 1;
+      const totalPages = Math.ceil(progressionData.length / itemsPerPage);
+
+      const tableBody = document.getElementById("tableBody");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const pageIndicator = document.getElementById("pageIndicator");
+
+      function renderTable(page) {
+        tableBody.innerHTML = "";
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        const pageData = progressionData.slice(start, end);
+
+        pageData.forEach((item) => {
+          const row = document.createElement("tr");
+          // Podświetlenie co 5 etapu dla satysfakcji
+          if (item.step % 5 === 0) row.style.backgroundColor = "#ecfdf5";
+
+          row.innerHTML = `
+                    <td><strong>#${item.step}</strong></td>
+                    <td>${item.scheme}</td>
+                    <td>${item.time}</td>
+                `;
+          tableBody.appendChild(row);
+        });
+
+        pageIndicator.innerText = `Strona ${page} z ${totalPages}`;
+        prevBtn.disabled = page === 1;
+        nextBtn.disabled = page === totalPages;
+      }
+
+      prevBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          renderTable(currentPage);
+        }
+      });
+
+      nextBtn.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          renderTable(currentPage);
+        }
+      });
+
+      // Inicjalizacja
+      renderTable(currentPage);
+    </script>
+  </body>
+</html>
